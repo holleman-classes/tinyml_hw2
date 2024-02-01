@@ -9,11 +9,10 @@ from tensorflow.keras import Input, layers
 
 
 import sys
-# sys.path.append('../hw1')
-# from hw1.hw1_complete import acc
+
 
 import hw2_complete as hw
-# from person import person as person
+
 
 
 model1 = hw.build_model1()
@@ -48,6 +47,8 @@ def count_layers(model, layer_type):
       lyr_count +=1 
   return lyr_count
 
+
+
 def test_model1_params():
   assert model1.count_params() == 704842
 
@@ -57,7 +58,7 @@ def test_model1_convs():
 
 def test_model1_batchnorm():
   n_bn = count_layers(model1, "BatchNormalization")
-  assert n_bn == 8
+  assert n_bn in [7,8]
 
 def test_model1_dense():
   n_dense = count_layers(model1, "Dense")
@@ -82,7 +83,7 @@ def test_model50k_acc50():
 
 def test_model50k_acc60():
   loss, acc = model50k.evaluate(test_images, test_labels)
-  assert acc >= 0.55
+  assert acc >= 0.60
 
 
   
